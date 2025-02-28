@@ -148,7 +148,22 @@ class Steps() {
      * Return the number of gnomes on steps
      */
     fun gnomeCount(): Int {
-        return 0
+        var count = 0
+        var n = 1
+        for(i in steps) {
+            if (i != null) {
+                print("$n. ")
+                println("occupied")
+                count++
+                n++
+            }
+            else {
+                print("$n. ")
+                println("empty")
+                n++
+            }
+        }
+        return count
     }
 
     /**
@@ -156,6 +171,8 @@ class Steps() {
      */
     fun placeGnome(step: Int, gnome: Gnome) {
 
+        val index = step -1
+        steps[index] = gnome
     }
 
     /**
@@ -163,6 +180,11 @@ class Steps() {
      * step number (1-5) if found, or 0 if not
      */
     fun stepNumOfGnome(gnome: Gnome): Int {
+        for(i in steps.indices) {
+            if (steps[i] == gnome) {
+                return i+1
+            }
+        }
         return 0
     }
 
@@ -171,7 +193,8 @@ class Steps() {
      * or null if out of range or empty
      */
     fun gnomeOnStep(stepNum: Int): Gnome? {
-        return null
+        val index = stepNum -1
+        return steps[index]
     }
 
     /**
